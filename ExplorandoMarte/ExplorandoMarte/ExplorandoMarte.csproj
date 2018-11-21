@@ -34,10 +34,13 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Malha.cs" />
-    <Compile Include="Properties\Sonda.cs" />
-    <Compile Include="Properties\Direcao.cs" />
-    <Compile Include="Properties\Controle.cs" />
+    <Compile Include="Models\Controle.cs" />
+    <Compile Include="Models\Direcao.cs" />
+    <Compile Include="Models\Malha.cs" />
+    <Compile Include="Models\Sonda.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

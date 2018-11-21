@@ -5,7 +5,7 @@ namespace ExplorandoMarte.Properties
 {
     public class Controle
     {
-        public void LerComandos(Sonda sonda, string comandos)
+        void LerComandos(Malha malha, Sonda sonda, string comandos)
         {
             comandos = comandos.ToUpper();
             foreach (var item in comandos)
@@ -19,7 +19,7 @@ namespace ExplorandoMarte.Properties
                         GirarEsquerda(sonda);
                         break;
                     case 'M':
-                        Mover(sonda);
+                        Mover(malha, sonda);
                         break;
                     default:
                         throw new ArgumentException("Comando não suportado.", nameof(comandos));
@@ -27,24 +27,29 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public void Mover(Sonda sonda)
+        public void Mover(Malha malha, Sonda sonda)
         {
-            switch (sonda.frente)
+            if (malha.sondas.Contains(sonda) && VerificarSePosicaoVazia(malha, sonda.posicaoX, sonda.posicaoY)) 
             {
-                case Direcao.NORTH:
-                    sonda.posicaoY++;
-                    break;
-                case Direcao.SOUTH:
-                    sonda.posicaoY--;
-                    break;
-                case Direcao.EAST:
-                    sonda.posicaoX++;
-                    break;
-                case Direcao.WEST:
-                    sonda.posicaoX--;
-                    break;
+
+                switch (sonda.frente)
+                {
+                    case Direcao.NORTH:
+                        sonda.posicaoY++;
+                        break;
+                    case Direcao.SOUTH:
+                        sonda.posicaoY--;
+                        break;
+                    case Direcao.EAST:
+                        sonda.posicaoX++;
+                        break;
+                    case Direcao.WEST:
+                        sonda.posicaoX--;
+                        break;
+                }
             }
-        }
+
+            }
 
         public void GirarDireita(Sonda sonda)
         {
@@ -81,6 +86,21 @@ namespace ExplorandoMarte.Properties
                     sonda.frente = Direcao.SOUTH;
                     break;
             }
+        }
+
+        public static bool VerificarSePosicaoVazia(Malha malha, int coordenadaX, int coordenadaY) 
+        {
+            if (malha.sondas != null && coordenadaX <= malha.limiteX && coordenadaX >= 0 && coordenadaY <= malha.limiteY && coordenadaY >= 0) 
+            {
+                foreach (var sonda in malha.sondas)
+                {
+                    if (sonda.posicaoX == coordenadaX && sonda.posicaoY == coordenadaY) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ExplorandoMarte.Properties
 
         public Sonda(Malha malha, int posicaoInicialX, int posiciaoInicialY, char frenteInicial)
         {
-            if (posicaoInicialX <= malha.limiteX && posiciaoInicialY <= malha.limiteY) 
+            if (posicaoInicialX <= malha.limiteX && posicaoInicialX >= 0 && posiciaoInicialY <= malha.limiteY && posiciaoInicialY >= 0) 
             {
                 this.posicaoX = posicaoInicialX;
                 this.posicaoY = posiciaoInicialY;
@@ -40,6 +40,12 @@ namespace ExplorandoMarte.Properties
                 {
                     this.frente = Direcao.WEST;
                 }
+                else
+                {
+                    throw new ArgumentException("Coordenadas fora dos limites da malha.");
+                }
+
+                malha.AdicionarSonda(this);
             }
         }
     }
