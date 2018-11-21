@@ -1,0 +1,6 @@
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/bin/Debug/ExplorandoMarte.exe
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/bin/Debug/ExplorandoMarte.pdb
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.csprojAssemblyReference.cache
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.csproj.CoreCompileInputs.cache
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.exe
+/Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.pdb
