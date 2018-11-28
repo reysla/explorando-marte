@@ -1,11 +1,12 @@
-﻿using System;
+﻿using ExplorandoMarte.Modelos;
+using System;
 using System.Collections.Generic;
 
 namespace ExplorandoMarte.Properties
 {
-    public class Controle
+    public static class Controle
     {
-        public void LerComandos(Sonda sonda, string comandos)
+        public static void LerComandos(this Sonda sonda, string comandos)
         {
             comandos = comandos.ToUpper();
             foreach (var item in comandos)
@@ -27,26 +28,54 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public void Mover(Sonda sonda)
+        public static void Mover(this Sonda sonda)
         {
             switch (sonda.frente)
             {
                 case Direcao.NORTH:
+                    if (sonda.posicaoY + 1 > sonda.Malha.LimiteY || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    {
+                        Console.WriteLine("Movimento não permitido");
+                        break;
+                    }
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = false;
                     sonda.posicaoY++;
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = true;
                     break;
                 case Direcao.SOUTH:
+                    if (sonda.posicaoY - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    {
+                        Console.WriteLine("Movimento não permitido");
+                        break;
+                    }
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = false;
                     sonda.posicaoY--;
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = true;
                     break;
                 case Direcao.EAST:
+                    if (sonda.posicaoX + 1 <= sonda.Malha.LimiteX || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    {
+                        Console.WriteLine("Movimento não permitido");
+                        break;
+                    }
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = false;
                     sonda.posicaoX++;
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = true;
                     break;
                 case Direcao.WEST:
+                    if (sonda.posicaoX - 1 > 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    {
+                        Console.WriteLine("Movimento não permitido");
+                        break;
+                    }
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = false;
                     sonda.posicaoX--;
+                    sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Ocupada = true;
                     break;
             }
         }
 
-        public void GirarDireita(Sonda sonda)
+        public static void GirarDireita(this Sonda sonda)
         {
             switch (sonda.frente)
             {
@@ -65,7 +94,7 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public void GirarEsquerda(Sonda sonda) {
+        public static void GirarEsquerda(this Sonda sonda) {
             switch (sonda.frente)
             {
                 case Direcao.NORTH:

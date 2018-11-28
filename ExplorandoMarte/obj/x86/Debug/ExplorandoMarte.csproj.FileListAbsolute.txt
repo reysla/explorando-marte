@@ -4,3 +4,10 @@
 /Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.csproj.CoreCompileInputs.cache
 /Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.exe
 /Users/Reysla/Projects/ExplorandoMarte/ExplorandoMarte/obj/x86/Debug/ExplorandoMarte.pdb
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\bin\Debug\ExplorandoMarte.exe.config
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\bin\Debug\ExplorandoMarte.exe
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\bin\Debug\ExplorandoMarte.pdb
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\obj\x86\Debug\ExplorandoMarte.csprojAssemblyReference.cache
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\obj\x86\Debug\ExplorandoMarte.csproj.CoreCompileInputs.cache
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\obj\x86\Debug\ExplorandoMarte.exe
+C:\Users\reysla.chiaradia\Desktop\ProjetosGit\explorando-marte\ExplorandoMarte\obj\x86\Debug\ExplorandoMarte.pdb
