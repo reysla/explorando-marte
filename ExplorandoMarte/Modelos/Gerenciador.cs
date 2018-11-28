@@ -33,7 +33,56 @@ namespace ExplorandoMarte.Modelos
 
             //return false;
 
-            return posicoes.Any(p => p.Ocupada);
+            return posicoes.Any(posicao => posicao.Sonda == null);
+        }
+
+        public static void VerificarSeMovimentoValido(this Sonda sonda)
+        {
+            if (sonda.posicaoY + 1 > sonda.Malha.LimiteY || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+            {
+                throw new Exception("Movimento não pertmitido");
+            }
+        }
+
+        public static void AtualizarPosicao(this Sonda sonda)
+        {
+            switch (sonda.frente)
+            {
+                case Direcao.NORTH:
+                    sonda.VerificarSeMovimentoValido();
+                    sonda.PosicaoComSonda();
+                    sonda.posicaoY++;
+                    sonda.PosicaoSemSonda();
+                    break;
+                case Direcao.SOUTH:
+                    sonda.VerificarSeMovimentoValido();
+                    sonda.PosicaoComSonda();
+                    sonda.posicaoY--;
+                    sonda.PosicaoSemSonda();
+                    break;
+                case Direcao.EAST:
+                    sonda.VerificarSeMovimentoValido();
+                    sonda.PosicaoComSonda();
+                    sonda.posicaoX++;
+                    sonda.PosicaoSemSonda();
+                    break;
+                case Direcao.WEST:
+                    sonda.VerificarSeMovimentoValido();
+                    sonda.PosicaoComSonda();
+                    sonda.posicaoX--;
+                    sonda.PosicaoSemSonda();
+                    break;
+            }
+        }
+
+        private static void PosicaoComSonda(this Sonda sonda)
+        {
+            sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Sonda = null;
+        }
+
+        private static void PosicaoSemSonda(this Sonda sonda)
+        {
+            sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Sonda = sonda;
         }
     }
 }

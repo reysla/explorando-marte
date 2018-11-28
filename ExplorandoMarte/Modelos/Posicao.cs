@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExplorandoMarte.Properties;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,13 @@ namespace ExplorandoMarte.Modelos
     {
         public int CoordenadaX { get; }
         public int CoordenadaY { get; }
-        public bool Ocupada { get; set; }
+        public Sonda Sonda { get; set; }
 
         public Posicao(int coordenadaX, int coordenadaY)
         {
             this.CoordenadaX = coordenadaX;
             this.CoordenadaY = coordenadaY;
-            Ocupada = false;
+            Sonda = null;
         }
     }
 }

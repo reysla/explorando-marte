@@ -34,8 +34,8 @@ namespace ExplorandoMarte.Properties
                 throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
             }
 
-            this.posicaoX = posicaoInicialX;
-            this.posicaoY = posiciaoInicialY;
+            //this.posicaoX = posicaoInicialX;
+            //this.posicaoY = posiciaoInicialY;
 
             if (frenteInicial == 'N') 
             {
@@ -56,7 +56,7 @@ namespace ExplorandoMarte.Properties
 
             //malha.Posicoes[posicaoInicialX, posiciaoInicialY] = true;
 
-            malha.BuscarPosicao(posicaoInicialX, posiciaoInicialY).Ocupada = true;
+            malha.BuscarPosicao(posicaoInicialX, posiciaoInicialY).Sonda = this;
         }
     }
 }
