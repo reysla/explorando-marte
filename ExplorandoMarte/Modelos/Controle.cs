@@ -16,9 +16,11 @@ namespace ExplorandoMarte.Properties
                 {
                     case 'R':
                         GirarDireita(sonda);
+                        Console.WriteLine("Girou pra direita.");
                         break;
                     case 'L':
                         GirarEsquerda(sonda);
+                        Console.WriteLine("Girou pra esquerda.");
                         break;
                     case 'M':
                         Mover(sonda);
@@ -34,43 +36,47 @@ namespace ExplorandoMarte.Properties
             switch (sonda.frente)
             {
                 case Direcao.NORTH:
-                    if (sonda.posicaoY + 1 > sonda.Malha.LimiteY || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    if (sonda.PosicaoY + 1 >= sonda.Malha.LimiteY || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
                     {
                         Console.WriteLine("Movimento não permitido");
                         break;
                     }
+                    Console.WriteLine("Movimento feito.");
                     sonda.PosicaoSemSonda();
-                    sonda.posicaoY++;
+                    sonda.PosicaoY++;
                     sonda.PosicaoComSonda();
                     break;
                 case Direcao.SOUTH:
-                    if (sonda.posicaoY - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    if (sonda.PosicaoY - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
                     {
                         Console.WriteLine("Movimento não permitido");
                         break;
                     }
+                    Console.WriteLine("Movimento feito.");
                     sonda.PosicaoSemSonda();
-                    sonda.posicaoY--;
+                    sonda.PosicaoY--;
                     sonda.PosicaoComSonda();
                     break;
                 case Direcao.EAST:
-                    if (sonda.posicaoX + 1 <= sonda.Malha.LimiteX || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    if (sonda.PosicaoX + 1 >= sonda.Malha.LimiteX || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
                     {
                         Console.WriteLine("Movimento não permitido");
                         break;
                     }
+                    Console.WriteLine("Movimento feito.");
                     sonda.PosicaoSemSonda();
-                    sonda.posicaoX++;
+                    sonda.PosicaoX++;
                     sonda.PosicaoComSonda();
                     break;
                 case Direcao.WEST:
-                    if (sonda.posicaoX - 1 > 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    if (sonda.PosicaoX - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
                     {
                         Console.WriteLine("Movimento não permitido");
                         break;
                     }
+                    Console.WriteLine("Movimento feito.");
                     sonda.PosicaoSemSonda();
-                    sonda.posicaoX--;
+                    sonda.PosicaoX--;
                     sonda.PosicaoComSonda();
                     break;
             }
@@ -78,12 +84,12 @@ namespace ExplorandoMarte.Properties
 
         private static void PosicaoComSonda(this Sonda sonda)
         {
-            sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Sonda = null;
+            sonda.Malha.BuscarPosicao(sonda.PosicaoX, sonda.PosicaoY).Sonda = null;
         }
 
         private static void PosicaoSemSonda(this Sonda sonda)
         {
-            sonda.Malha.BuscarPosicao(sonda.posicaoX, sonda.posicaoY).Sonda = sonda;
+            sonda.Malha.BuscarPosicao(sonda.PosicaoX, sonda.PosicaoY).Sonda = sonda;
         }
 
         public static void GirarDireita(this Sonda sonda)
@@ -126,7 +132,7 @@ namespace ExplorandoMarte.Properties
 
         public static bool VerficarPosicaoOcupada(this List<Posicao> posicoes)
         {
-            return posicoes.Any(posicao => posicao.Sonda == null);
+            return posicoes.Any(posicao => posicao.Sonda != null);
         }
     }
 }

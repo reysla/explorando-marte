@@ -4,13 +4,13 @@ namespace ExplorandoMarte.Properties
 {
     public class Sonda
     {
-        public int posicaoX
+        public int PosicaoX
         {
             get;
             set;
         }
 
-        public int posicaoY
+        public int PosicaoY
         {
             get;
             set;
@@ -34,8 +34,8 @@ namespace ExplorandoMarte.Properties
                 throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
             }
 
-            //this.posicaoX = posicaoInicialX;
-            //this.posicaoY = posiciaoInicialY;
+            this.PosicaoX = posicaoInicialX;
+            this.PosicaoY = posiciaoInicialY;
 
             if (frenteInicial == 'N') 
             {
@@ -54,9 +54,12 @@ namespace ExplorandoMarte.Properties
                 this.frente = Direcao.WEST;
             }
 
-            //malha.Posicoes[posicaoInicialX, posiciaoInicialY] = true;
-
             malha.BuscarPosicao(posicaoInicialX, posiciaoInicialY).Sonda = this;
+        }
+
+        public override string ToString()
+        {
+            return $"{this.PosicaoX} {this.PosicaoY} {this.frente}";
         }
     }
 }

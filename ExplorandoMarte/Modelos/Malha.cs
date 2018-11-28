@@ -72,5 +72,13 @@ namespace ExplorandoMarte.Properties
         //{
         //    return this.dicionarioPosicoes[coordenada];
         //}
+
+        public void ImprimirPosicoes()
+        {
+            foreach (var item in Posicoes)
+            {
+                Console.WriteLine(item.CoordenadaX + " " + item.CoordenadaY);
+            }
+        }
     }
 }

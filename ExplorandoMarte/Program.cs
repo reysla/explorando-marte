@@ -9,17 +9,19 @@ namespace ExplorandoMarte
     {
         public static void Main(string[] args)
         {
-            var malha = new Malha(5, 7);
+            var malha = new Malha(5, 5);
+            Console.WriteLine("Malha criada.");
+            malha.ImprimirPosicoes();
+            var sonda1 = new Sonda(malha, 1, 2, 'N');
+            Console.WriteLine("Sonda1 criada.");
+            sonda1.LerComandos("LMLMLMLMM");
+            Console.WriteLine("Movimentos feitos com sucesso.");
 
-            var sonda = new Sonda(malha, 3, 6, 'N');
-            Console.WriteLine("Sonda criada com sucesso.");
+            var sonda2 = new Sonda(malha, 3, 3, 'E');
+            sonda2.LerComandos("MMRMMRMRRM");
 
-            var sonda2 = new Sonda(malha, 2, 4, 'S');
-            Console.WriteLine("Sonda criada com sucesso.");
-
-            var sonda3 = new Sonda(malha, 3, 6, 'E');
-
-            Console.ReadLine();
+            Console.WriteLine(sonda1);
+            Console.WriteLine(sonda2);
         }
     }
 }

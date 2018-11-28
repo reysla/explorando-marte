@@ -33,7 +33,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modelos\Gerenciador.cs" />
     <Compile Include="Modelos\Posicao.cs" />
     <Compile Include="Modelos\PosicaoIndisponivelException.cs" />
     <Compile Include="Program.cs" />
