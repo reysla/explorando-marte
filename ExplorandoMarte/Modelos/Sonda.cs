@@ -20,15 +20,17 @@ namespace ExplorandoMarte.Properties
 
         public Sonda(Malha malha, int posicaoInicialX, int posiciaoInicialY, char frenteInicial)
         {
-            if (posicaoInicialX > malha.LimiteX || posiciaoInicialY > malha.LimiteY) 
+            var posicao = new Posicao(posicaoInicialX, posiciaoInicialY);
+
+            if (malha.BuscarPosicao(posicao) == null) 
             {
-                throw new ArgumentOutOfRangeException("Posição inválida.");
+                throw new PosicaoInvalidaException("Posição inválida.");
             }
 
-            //if (this.Malha.Posicoes.VerficarPosicaoOcupada() == true)
-            //{
-            //    throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
-            //}
+            if (malha.VerficarPosicaoVazia(posicao) == false)
+            {
+                throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
+            }
 
             this.PosicaoX = posicaoInicialX;
             this.PosicaoY = posiciaoInicialY;
@@ -50,7 +52,7 @@ namespace ExplorandoMarte.Properties
                 this.frente = Direcao.WEST;
             }
 
-            malha.BuscarPosicao(posicaoInicialX, posiciaoInicialY).Sonda = this;
+            malha.BuscarPosicao(posicao).Sonda = this;
         }
 
         public override string ToString()

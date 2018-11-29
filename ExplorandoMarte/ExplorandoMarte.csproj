@@ -33,6 +33,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Modelos\MovimentoNaoPermitidoException.cs" />
     <Compile Include="Modelos\Posicao.cs" />
     <Compile Include="Modelos\PosicaoIndisponivelException.cs" />
     <Compile Include="Modelos\PosicaoInvalidaException.cs" />

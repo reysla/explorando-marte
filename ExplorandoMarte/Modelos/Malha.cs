@@ -68,6 +68,11 @@ namespace ExplorandoMarte.Properties
             throw new Exception("Posição inválida.");
         }
 
+        internal void AtualizarPosicaoSonda(Sonda sonda, Posicao novaPosicao)
+        {
+            throw new NotImplementedException();
+        }
+
         internal Posicao BuscarPosicao(Sonda sonda)
         {
             var posicao = new Posicao(sonda.PosicaoX, sonda.PosicaoY);

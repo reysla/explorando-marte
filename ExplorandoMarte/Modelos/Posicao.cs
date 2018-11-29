@@ -24,5 +24,16 @@ namespace ExplorandoMarte.Modelos
         {
             return "X: " + CoordenadaX + " Y: " + CoordenadaY + " Sonda: " + Sonda;
         }
+
+        //public override bool Equals(object obj)
+        //{
+        //    Posicao posicao = obj as Posicao;
+        //    if (this.CoordenadaX != posicao.CoordenadaX || this.CoordenadaY != posicao.CoordenadaY)
+        //    {
+        //        throw new PosicaoInvalidaException("Posição não existe na malha atual.");
+        //    }
+
+        //    return true;
+        //}
     }
 }
