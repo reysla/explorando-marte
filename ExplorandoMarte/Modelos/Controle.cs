@@ -21,6 +21,7 @@ namespace ExplorandoMarte.Properties
                     case 'L':
                         GirarEsquerda(sonda);
                         Console.WriteLine("Girou pra esquerda.");
+                        sonda.Malha.ImprimirPosicoes();
                         break;
                     case 'M':
                         Mover(sonda);
@@ -33,63 +34,39 @@ namespace ExplorandoMarte.Properties
 
         public static void Mover(this Sonda sonda)
         {
+            int novaCoordenadaY;
+            int novaCoordenadaX;
             switch (sonda.frente)
             {
                 case Direcao.NORTH:
-                    if (sonda.PosicaoY + 1 >= sonda.Malha.LimiteY || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    novaCoordenadaY = sonda.PosicaoY + 1;
+                    if (novaCoordenadaY <= sonda.Malha.LimiteY && sonda.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
                     {
-                        Console.WriteLine("Movimento não permitido");
-                        break;
+                        Console.WriteLine("Movimento permitido. " + sonda);
                     }
-                    Console.WriteLine("Movimento feito.");
-                    sonda.PosicaoSemSonda();
-                    sonda.PosicaoY++;
-                    sonda.PosicaoComSonda();
                     break;
                 case Direcao.SOUTH:
-                    if (sonda.PosicaoY - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    novaCoordenadaY = sonda.PosicaoY - 1;
+                    if (novaCoordenadaY >= 0 && sonda.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
                     {
-                        Console.WriteLine("Movimento não permitido");
-                        break;
+                        Console.WriteLine("Movimento permitido. " + sonda);
                     }
-                    Console.WriteLine("Movimento feito.");
-                    sonda.PosicaoSemSonda();
-                    sonda.PosicaoY--;
-                    sonda.PosicaoComSonda();
                     break;
                 case Direcao.EAST:
-                    if (sonda.PosicaoX + 1 >= sonda.Malha.LimiteX || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    novaCoordenadaX = sonda.PosicaoX + 1;
+                    if (novaCoordenadaX <= sonda.Malha.LimiteX && sonda.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
                     {
-                        Console.WriteLine("Movimento não permitido");
-                        break;
+                        Console.WriteLine("Movimento permitido. " + sonda);
                     }
-                    Console.WriteLine("Movimento feito.");
-                    sonda.PosicaoSemSonda();
-                    sonda.PosicaoX++;
-                    sonda.PosicaoComSonda();
                     break;
                 case Direcao.WEST:
-                    if (sonda.PosicaoX - 1 < 0 || sonda.Malha.Posicoes.VerficarPosicaoOcupada())
+                    novaCoordenadaX = sonda.PosicaoX - 1;
+                    if (novaCoordenadaX >= 0 && sonda.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
                     {
-                        Console.WriteLine("Movimento não permitido");
-                        break;
+                        Console.WriteLine("Movimento permitido. " + sonda);
                     }
-                    Console.WriteLine("Movimento feito.");
-                    sonda.PosicaoSemSonda();
-                    sonda.PosicaoX--;
-                    sonda.PosicaoComSonda();
                     break;
             }
-        }
-
-        private static void PosicaoComSonda(this Sonda sonda)
-        {
-            sonda.Malha.BuscarPosicao(sonda.PosicaoX, sonda.PosicaoY).Sonda = null;
-        }
-
-        private static void PosicaoSemSonda(this Sonda sonda)
-        {
-            sonda.Malha.BuscarPosicao(sonda.PosicaoX, sonda.PosicaoY).Sonda = sonda;
         }
 
         public static void GirarDireita(this Sonda sonda)
@@ -130,9 +107,22 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public static bool VerficarPosicaoOcupada(this List<Posicao> posicoes)
+        public static bool VerficarPosicaoVazia(this Sonda sonda, int coordenadaX, int coordenadaY)
         {
-            return posicoes.Any(posicao => posicao.Sonda != null);
+            var posicao = sonda.Malha.BuscarPosicao(coordenadaX, coordenadaY);
+
+            if (posicao == null)
+            {
+                throw new PosicaoInvalidaException("Coordenadas inválidas.");
+            }
+
+            if (posicao.Sonda != null)
+            {
+                return false;
+            }
+
+            return true;
+            //return posicoes.Any(posicao => posicao.Sonda != null);
         }
     }
 }

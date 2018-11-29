@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Modelos\Posicao.cs" />
     <Compile Include="Modelos\PosicaoIndisponivelException.cs" />
+    <Compile Include="Modelos\PosicaoInvalidaException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modelos\Malha.cs" />

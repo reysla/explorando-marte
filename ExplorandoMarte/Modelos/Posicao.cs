@@ -19,5 +19,10 @@ namespace ExplorandoMarte.Modelos
             this.CoordenadaY = coordenadaY;
             Sonda = null;
         }
+
+        public override string ToString()
+        {
+            return "X: " + CoordenadaX + " Y: " + CoordenadaY + " Sonda: " + Sonda;
+        }
     }
 }

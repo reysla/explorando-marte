@@ -29,10 +29,10 @@ namespace ExplorandoMarte.Properties
                 throw new ArgumentOutOfRangeException("Posição inválida.");
             }
 
-            if (this.Malha.Posicoes.VerficarPosicaoOcupada() == true)
-            {
-                throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
-            }
+            //if (this.Malha.Posicoes.VerficarPosicaoOcupada() == true)
+            //{
+            //    throw new PosicaoIndisponivelException(posicaoInicialX, posiciaoInicialY);
+            //}
 
             this.PosicaoX = posicaoInicialX;
             this.PosicaoY = posiciaoInicialY;

@@ -77,8 +77,19 @@ namespace ExplorandoMarte.Properties
         {
             foreach (var item in Posicoes)
             {
-                Console.WriteLine(item.CoordenadaX + " " + item.CoordenadaY);
+                Console.Write(item.CoordenadaX + " " + item.CoordenadaY);
+                if (item.Sonda == null)
+                {
+                    Console.WriteLine(" Não possui sonda");
+                }
+                else
+                {
+                    Console.WriteLine(" " + item.Sonda);
+                }
             }
+
+            Console.WriteLine("---------------");
+            Console.WriteLine("---------------");
         }
     }
 }
