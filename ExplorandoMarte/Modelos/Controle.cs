@@ -16,11 +16,11 @@ namespace ExplorandoMarte.Properties
                 {
                     case 'R':
                         GirarDireita(sonda);
-                        Console.WriteLine("Girou pra direita.");
+                        //Console.WriteLine("Girou pra direita.");
                         break;
                     case 'L':
                         GirarEsquerda(sonda);
-                        Console.WriteLine("Girou pra esquerda.");
+                        //Console.WriteLine("Girou pra esquerda.");
                         break;
                     case 'M':
                         malha.Mover(sonda);
@@ -42,9 +42,9 @@ namespace ExplorandoMarte.Properties
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
-                    Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
+                    //Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
                     malha.AtualizarPosicoes(sonda, novaPosicao);
-                    Console.WriteLine("Nova posição: " + sonda);
+                    //Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.SOUTH:
                     novaPosicao = new Posicao(sonda.PosicaoX, sonda.PosicaoY - 1);
@@ -52,9 +52,9 @@ namespace ExplorandoMarte.Properties
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
-                    Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
+                    //Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
                     malha.AtualizarPosicoes(sonda, novaPosicao);
-                    Console.WriteLine("Nova posição: " + sonda);
+                    //Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.EAST:
                     novaPosicao = new Posicao(sonda.PosicaoX + 1, sonda.PosicaoY);
@@ -62,9 +62,9 @@ namespace ExplorandoMarte.Properties
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
-                    Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
+                    //Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
                     malha.AtualizarPosicoes(sonda, novaPosicao);
-                    Console.WriteLine("Nova posição: " + sonda);
+                    //Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.WEST:
                     novaPosicao = new Posicao(sonda.PosicaoX - 1, sonda.PosicaoY);
@@ -72,9 +72,9 @@ namespace ExplorandoMarte.Properties
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
-                    Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
+                    //Console.WriteLine("Movimento permitido. Posicao atual: " + sonda);
                     malha.AtualizarPosicoes(sonda, novaPosicao);
-                    Console.WriteLine("Nova posição: " + sonda);
+                    //Console.WriteLine("Nova posição: " + sonda);
                     break;
             }
         }
@@ -139,7 +139,7 @@ namespace ExplorandoMarte.Properties
         {
             malha.BuscarPosicao(sonda).Sonda = null;
             malha.BuscarPosicao(novaPosicao).Sonda = sonda;
-            Console.WriteLine("Nova posição: " + novaPosicao.CoordenadaX + " " + novaPosicao.CoordenadaY + " " + novaPosicao.Sonda);
+            //Console.WriteLine("Nova posição: " + novaPosicao.CoordenadaX + " " + novaPosicao.CoordenadaY + " " + novaPosicao.Sonda);
             sonda.PosicaoX = novaPosicao.CoordenadaX;
             sonda.PosicaoY = novaPosicao.CoordenadaY;
         }
