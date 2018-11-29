@@ -20,6 +20,8 @@ namespace ExplorandoMarte.Properties
 
         public List<Posicao> Posicoes { get; }
 
+        public List<Sonda> Sondas { get; set; }
+        
         public Malha(int limiteX, int limiteY)
         {
             this.LimiteX = limiteX;

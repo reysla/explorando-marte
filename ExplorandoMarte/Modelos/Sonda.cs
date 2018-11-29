@@ -53,6 +53,7 @@ namespace ExplorandoMarte.Properties
             }
 
             malha.BuscarPosicao(posicao).Sonda = this;
+            malha.Sondas.Add(this);
         }
 
         public override string ToString()
