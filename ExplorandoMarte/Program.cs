@@ -21,7 +21,7 @@ namespace ExplorandoMarte
 
             malha.ImprimirPosicoes();
 
-            sonda1.LerComandos("LMLMLMLMM");
+            malha.LerComandos(sonda1, "LMLMLMLMM");
             //Console.WriteLine("Movimentos feitos com sucesso.");
 
             //var sonda2 = new Sonda(malha, 3, 3, 'E');

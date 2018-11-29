@@ -56,16 +56,23 @@ namespace ExplorandoMarte.Properties
             //}
         }
 
-        internal Posicao BuscarPosicao(int coordenadaX, int coordenadaY)
+        internal Posicao BuscarPosicao(Posicao posicao)
         {
-            foreach (var posicao in this.Posicoes)
+            foreach (var item in this.Posicoes)
             {
-                if (posicao.CoordenadaX == coordenadaX && posicao.CoordenadaY == coordenadaY)
+                if (item.CoordenadaX == posicao.CoordenadaX && item.CoordenadaY == posicao.CoordenadaY)
                 {
                     return posicao;
                 }
             }
             throw new Exception("Posição inválida.");
+        }
+
+        internal Posicao BuscarPosicao(Sonda sonda)
+        {
+            var posicao = new Posicao(sonda.PosicaoX, sonda.PosicaoY);
+
+            return BuscarPosicao(posicao);
         }
 
         //internal Posicao BuscarPosicao(int[] coordenada)

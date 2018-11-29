@@ -7,7 +7,7 @@ namespace ExplorandoMarte.Properties
 {
     public static class Controle
     {
-        public static void LerComandos(this Sonda sonda, string comandos)
+        public static void LerComandos(this Malha malha, Sonda sonda, string comandos)
         {
             comandos = comandos.ToUpper();
             foreach (var item in comandos)
@@ -21,10 +21,10 @@ namespace ExplorandoMarte.Properties
                     case 'L':
                         GirarEsquerda(sonda);
                         Console.WriteLine("Girou pra esquerda.");
-                        sonda.Malha.ImprimirPosicoes();
+                        malha.ImprimirPosicoes();
                         break;
                     case 'M':
-                        Mover(sonda);
+                        malha.Mover(sonda);
                         break;
                     default:
                         throw new ArgumentException("Comando não suportado.", nameof(comandos));
@@ -32,36 +32,40 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public static void Mover(this Sonda sonda)
+        public static void Mover(this Malha malha, Sonda sonda)
         {
             int novaCoordenadaY;
             int novaCoordenadaX;
+
+            Posicao novaPosicao;
             switch (sonda.frente)
             {
                 case Direcao.NORTH:
+                    novaPosicao = new Posicao(sonda.PosicaoY + 1, sonda.PosicaoX);
                     novaCoordenadaY = sonda.PosicaoY + 1;
-                    if (novaCoordenadaY <= sonda.Malha.LimiteY && sonda.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
+                    if (novaCoordenadaY <= malha.LimiteY && malha.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
                     {
                         Console.WriteLine("Movimento permitido. " + sonda);
+                        malha.BuscarPosicao()
                     }
                     break;
                 case Direcao.SOUTH:
                     novaCoordenadaY = sonda.PosicaoY - 1;
-                    if (novaCoordenadaY >= 0 && sonda.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
+                    if (novaCoordenadaY >= 0 && malha.VerficarPosicaoVazia(sonda.PosicaoX, novaCoordenadaY))
                     {
                         Console.WriteLine("Movimento permitido. " + sonda);
                     }
                     break;
                 case Direcao.EAST:
                     novaCoordenadaX = sonda.PosicaoX + 1;
-                    if (novaCoordenadaX <= sonda.Malha.LimiteX && sonda.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
+                    if (novaCoordenadaX <= malha.LimiteX && malha.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
                     {
                         Console.WriteLine("Movimento permitido. " + sonda);
                     }
                     break;
                 case Direcao.WEST:
                     novaCoordenadaX = sonda.PosicaoX - 1;
-                    if (novaCoordenadaX >= 0 && sonda.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
+                    if (novaCoordenadaX >= 0 && malha.VerficarPosicaoVazia(novaCoordenadaX, sonda.PosicaoY))
                     {
                         Console.WriteLine("Movimento permitido. " + sonda);
                     }
@@ -107,11 +111,11 @@ namespace ExplorandoMarte.Properties
             }
         }
 
-        public static bool VerficarPosicaoVazia(this Sonda sonda, int coordenadaX, int coordenadaY)
+        public static bool VerficarPosicaoVazia(this Malha malha, Posicao posicao)
         {
-            var posicao = sonda.Malha.BuscarPosicao(coordenadaX, coordenadaY);
+            var p = malha.BuscarPosicao(posicao);
 
-            if (posicao == null)
+            if (p == null)
             {
                 throw new PosicaoInvalidaException("Coordenadas inválidas.");
             }

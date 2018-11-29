@@ -16,14 +16,10 @@ namespace ExplorandoMarte.Properties
             set;
         }
 
-        public Malha Malha { get; }
-
         public Direcao frente;
 
         public Sonda(Malha malha, int posicaoInicialX, int posiciaoInicialY, char frenteInicial)
         {
-            this.Malha = malha;
-
             if (posicaoInicialX > malha.LimiteX || posiciaoInicialY > malha.LimiteY) 
             {
                 throw new ArgumentOutOfRangeException("Posição inválida.");
