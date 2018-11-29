@@ -57,7 +57,7 @@ namespace ExplorandoMarte.Properties
 
         public override string ToString()
         {
-            return $"{this.PosicaoX} {this.PosicaoY} {this.frente}";
+            return $"{this.PosicaoX} {this.PosicaoY} {this.frente.ToString().Substring(0, 1)}";
         }
     }
 }

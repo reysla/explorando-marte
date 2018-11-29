@@ -21,7 +21,6 @@ namespace ExplorandoMarte.Properties
                     case 'L':
                         GirarEsquerda(sonda);
                         Console.WriteLine("Girou pra esquerda.");
-                        malha.ImprimirPosicoes();
                         break;
                     case 'M':
                         malha.Mover(sonda);
@@ -38,7 +37,7 @@ namespace ExplorandoMarte.Properties
             switch (sonda.frente)
             {
                 case Direcao.NORTH:
-                    novaPosicao = new Posicao(sonda.PosicaoY + 1, sonda.PosicaoX);
+                    novaPosicao = new Posicao(sonda.PosicaoX, sonda.PosicaoY + 1);
                     if (!malha.VerificarSePosicaoValida(novaPosicao))
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
@@ -48,8 +47,8 @@ namespace ExplorandoMarte.Properties
                     Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.SOUTH:
-                    novaPosicao = new Posicao(sonda.PosicaoY - 1, sonda.PosicaoX);
-                    if (malha.VerificarSePosicaoValida(novaPosicao))
+                    novaPosicao = new Posicao(sonda.PosicaoX, sonda.PosicaoY - 1);
+                    if (!malha.VerificarSePosicaoValida(novaPosicao))
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
@@ -58,8 +57,8 @@ namespace ExplorandoMarte.Properties
                     Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.EAST:
-                    novaPosicao = new Posicao(sonda.PosicaoY, sonda.PosicaoX + 1);
-                    if (malha.VerificarSePosicaoValida(novaPosicao))
+                    novaPosicao = new Posicao(sonda.PosicaoX + 1, sonda.PosicaoY);
+                    if (!malha.VerificarSePosicaoValida(novaPosicao))
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
@@ -68,8 +67,8 @@ namespace ExplorandoMarte.Properties
                     Console.WriteLine("Nova posição: " + sonda);
                     break;
                 case Direcao.WEST:
-                    novaPosicao = new Posicao(sonda.PosicaoY, sonda.PosicaoX - 1);
-                    if (malha.VerificarSePosicaoValida(novaPosicao))
+                    novaPosicao = new Posicao(sonda.PosicaoX - 1, sonda.PosicaoY);
+                    if (!malha.VerificarSePosicaoValida(novaPosicao))
                     {
                         throw new MovimentoNaoPermitidoException("Movimento inválido.");
                     }
@@ -127,7 +126,7 @@ namespace ExplorandoMarte.Properties
                 throw new PosicaoInvalidaException("Coordenadas inválidas.");
             }
 
-            if (posicao.Sonda != null)
+            if (malha.BuscarPosicao(posicao).Sonda != null)
             {
                 return false;
             }
@@ -139,7 +138,8 @@ namespace ExplorandoMarte.Properties
         internal static void AtualizarPosicoes(this Malha malha, Sonda sonda, Posicao novaPosicao)
         {
             malha.BuscarPosicao(sonda).Sonda = null;
-            novaPosicao.Sonda = sonda;
+            malha.BuscarPosicao(novaPosicao).Sonda = sonda;
+            Console.WriteLine("Nova posição: " + novaPosicao.CoordenadaX + " " + novaPosicao.CoordenadaY + " " + novaPosicao.Sonda);
             sonda.PosicaoX = novaPosicao.CoordenadaX;
             sonda.PosicaoY = novaPosicao.CoordenadaY;
         }
@@ -148,13 +148,13 @@ namespace ExplorandoMarte.Properties
         {
             foreach (var item in malha.Posicoes)
             {
-                if (item.CoordenadaX != posicao.CoordenadaX || item.CoordenadaY != posicao.CoordenadaY || malha.VerficarPosicaoVazia(posicao))
+                if (item.CoordenadaX == posicao.CoordenadaX && item.CoordenadaY == posicao.CoordenadaY && malha.VerficarPosicaoVazia(posicao))
                 {
-                    return false;
+                    return true;
                 }
             }
 
-            return true;
+            return false;
         }
     }
 }

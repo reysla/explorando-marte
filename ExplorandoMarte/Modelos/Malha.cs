@@ -20,19 +20,10 @@ namespace ExplorandoMarte.Properties
 
         public List<Posicao> Posicoes { get; }
 
-        //public IDictionary<int[], Posicao> dicionarioPosicoes = new Dictionary<int[], Posicao>();
-
-        //public bool[,] Posicoes { get; set; }
-
         public Malha(int limiteX, int limiteY)
         {
             this.LimiteX = limiteX;
             this.LimiteY = limiteY;
-
-            //for (int i = 0; i < (LimiteX * LimiteY); i++)
-            //{
-            //    Posicoes = 
-            //}
 
             this.Posicoes = new List<Posicao>();
             Posicao posicao;
@@ -45,15 +36,6 @@ namespace ExplorandoMarte.Properties
                     this.Posicoes.Add(posicao);
                 }
             }
-            //Posicoes = new bool[LimiteX + 1, LimiteY + 1];
-
-            //for (int i = 0; i <= LimiteX; i++)
-            //{
-            //    for (int j = 0; j <= LimiteY; j++)
-            //    {
-            //        Posicoes[i, j] = false;
-            //    }
-            //}
         }
 
         internal Posicao BuscarPosicao(Posicao posicao)
@@ -62,7 +44,7 @@ namespace ExplorandoMarte.Properties
             {
                 if (item.CoordenadaX == posicao.CoordenadaX && item.CoordenadaY == posicao.CoordenadaY)
                 {
-                    return posicao;
+                    return item;
                 }
             }
             throw new Exception("Posição inválida.");
@@ -79,11 +61,6 @@ namespace ExplorandoMarte.Properties
 
             return BuscarPosicao(posicao);
         }
-
-        //internal Posicao BuscarPosicao(int[] coordenada)
-        //{
-        //    return this.dicionarioPosicoes[coordenada];
-        //}
 
         public void ImprimirPosicoes()
         {
